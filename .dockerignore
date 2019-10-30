@@ -1,10 +1,8 @@
 # don't copy the Dockerfile as it's not needed inside the image
 Dockerfile
 
-# ignore Pipfiles as requirements.txt is generated before
-# and used inside the image
-Pipfile
-Pipfile.lock
+# ignore requirements.txt as it's generated during image build
+requirements.txt
 
 # project files
 README.md

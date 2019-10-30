@@ -6,10 +6,13 @@ RUN adduser -D worker
 USER worker
 WORKDIR /home/worker
 
-COPY --chown=worker:worker requirements.txt requirements.txt
-RUN pip install --user -r requirements.txt
+RUN pip install --user pipenv
 
 ENV PATH="/home/worker/.local/bin:${PATH}"
+
+COPY --chown=worker:worker Pipfile Pipfile
+RUN pipenv lock -r > requirements.txt
+RUN pip install --user -r requirements.txt
 
 COPY --chown=worker:worker . .
 
